@@ -1,0 +1,36 @@
+services:
+  playwright:
+    container_name: ${COMPONENT}
+    image: "${REGISTRY}${COMPONENT}:${TAG:-latest}"
+    environment:
+      EXAMPLE_ENV: ${EXAMPLE_ENV}
+
+    build:
+      context: .
+      args:
+        VERSION: ${VERSION:-v0.0.1}
+        RELEASE_DATE: $RELEASE_DATE
+        PLAYWRIGHT_IMAGE_URL: ${PLAYWRIGHT_IMAGE_URL}
+        PLAYWRIGHT_IMAGE_VERSION: ${PLAYWRIGHT_IMAGE_VERSION}
+
+    ports:
+      - 3002
+
+    depends_on:
+      - webapp
+
+    networks:
+      - playwright_weappname_network
+  # Enable this to start webapp and run e2e test against it
+  # webapp:
+  #   extends:
+  #     file: [path_to_webapp_compose_file]
+  #     service: web
+
+  #   container_name: ${COMPONENT:-webapp-name}
+  #   networks:
+  #     - playwright_weappname_network
+
+  # add networks
+networks:
+  playwright_weappname_network:
