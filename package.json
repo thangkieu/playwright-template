@@ -1,8 +1,7 @@
 {
   "name": "@thangkieu/create-playwright-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "Create boilerplate for playwright",
   "scripts": {
     "test:bdd": "playwright test ./tests/bdd",
     "test": "npm run test:bdd"
