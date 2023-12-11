@@ -1,6 +1,6 @@
 {
   "name": "@thangkieu/create-playwright-app",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Create boilerplate for playwright",
   "scripts": {
     "test:bdd": "playwright test ./tests/bdd",

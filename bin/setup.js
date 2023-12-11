@@ -79,6 +79,19 @@ async function main() {
 
     process.chdir(projectPath);
 
+    // Below statements must be wrapped inside the 'async' function:
+    const packageJsonStr = await fs.promises.readFile('package.json', 'utf8');
+
+    const packageJSON = JSON.parse(packageJsonStr);
+
+    packageJSON.name = projectName;
+    packageJSON.description = '';
+    packageJSON.version = '0.0.0';
+    delete packageJSON.bin;
+
+    const updatedPackageJsonStr = JSON.stringify(packageJSON, null, 2);
+    await fs.promises.writeFile('package.json', updatedPackageJsonStr, 'utf8');
+
     console.log(`Installing dependencies using ${npmTool}...`);
     execSync(`${npmTool} install`);
 
